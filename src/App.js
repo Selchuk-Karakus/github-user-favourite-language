@@ -1,9 +1,9 @@
-import './App.css';
+import "./App.css";
 
 const Header = () => {
   return (
     <header>
-      <div  className="header-container">
+      <div className="header-container">
         <h1>Github User Favourite Language </h1>
         <ul className="contacts">
           <li className="contact-dev">
@@ -18,12 +18,28 @@ const Header = () => {
       </div>
     </header>
   );
-}
+};
+
+const GitHubUser = () => {
+  return (
+    <div className="user">
+      <h2 className="user-name">
+        <span>Github User: </span>
+        Selchuk-Karakus
+      </h2>
+      <h2 className="user-language">
+        <span> Favourite Language: </span>
+        Javascipt
+      </h2>
+    </div>
+  );
+};
 
 function App() {
   return (
     <div className="App">
-     <Header/>
+      <Header />
+      <GitHubUser />
     </div>
   );
 }
