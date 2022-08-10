@@ -10,6 +10,12 @@ body {
   font-family: montserrat-bold, sans-serif;
 }
 
+/* Main Content */
+.App {
+  width: 100%;
+  margin: auto;
+}
+
 /* Header */
 .header-container {
   color: 14153f;
@@ -67,6 +73,23 @@ ul > :last-child a {
 
 ul > :first-child a {
   border: 2px solid #14153f;
+}
+
+/* GithubUser */
+.user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 85px);
+}
+
+.user > h2 {
+  margin: 1em;
+}
+
+.user-name .user-language {
+  width: 50px;
+  height: 50px;
 }
 
 /* Mobile Friendly */
