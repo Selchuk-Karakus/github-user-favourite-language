@@ -16,6 +16,8 @@ body {
 .App {
   width: 100%;
   margin: auto;
+  background: #fff;
+  min-height: calc(100vh - 95px);
 }
 
 /* ================================= 
@@ -103,6 +105,23 @@ ul > :first-child a {
 .search-form {
   text-align: center;
   margin-top: 2em;
+}
+
+/* Footer */
+.footer-container {
+  background-color: #14153f;
+  border-top: 1px solid #e7e7e7;
+  text-align: center;
+  padding: 20px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 150px;
+  width: 100vw;
+}
+
+.copy-right {
+  color: #fff;
 }
 
 /* ================================= 
