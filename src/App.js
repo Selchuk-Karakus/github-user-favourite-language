@@ -35,10 +35,23 @@ const GitHubUser = () => {
   );
 };
 
+const GithubUserSearchForm = () => {
+  return (
+    <form className="search-form">
+      <label>
+        Github User Name:
+        <input type="text" name="name" placeholder="Search..." />
+      </label>
+      <input className="search-button" type="submit" value="Go" />
+    </form>
+  );
+};
+
 function App() {
   return (
     <div className="App">
       <Header />
+      <GithubUserSearchForm />
       <GitHubUser />
     </div>
   );
