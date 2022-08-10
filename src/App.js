@@ -1,4 +1,5 @@
 import "./App.css";
+import { useState, useEffect } from "react";
 
 const Header = () => {
   return (
@@ -20,12 +21,12 @@ const Header = () => {
   );
 };
 
-const GitHubUser = () => {
+const GitHubUser = ({ user }) => {
   return (
     <div className="user">
       <h2 className="user-name">
         <span>Github User: </span>
-        Selchuk-Karakus
+        {user}
       </h2>
       <h2 className="user-language">
         <span> Favourite Language: </span>
@@ -58,11 +59,13 @@ const Footer = () => {
 };
 
 function App() {
+  const [user, setUser] = useState("Selchuk-Karakus");
+
   return (
     <div className="App">
       <Header />
       <GithubUserSearchForm />
-      <GitHubUser />
+      <GitHubUser user={user} />
       <Footer />
     </div>
   );
