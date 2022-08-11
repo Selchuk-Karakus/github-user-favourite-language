@@ -69,9 +69,31 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         return data.map((userRepo) => {
-          console.group(userRepo.language);
           return userRepo.language;
         });
+      })
+      .then((languages) =>
+        languages.reduce((language, occurrence) => {
+          Object.keys(language).includes(occurrence)
+            ? language[occurrence]++
+            : (language[occurrence] = 1);
+          return language;
+        }, {})
+      )
+      .then((languageCount) => {
+        console.log(languageCount);
+        let maxIndex = Object.values(languageCount).reduce(
+          (maxValInd, numOccurrence, ind) => {
+            if (numOccurrence > maxValInd.max) {
+              maxValInd.max = numOccurrence;
+              maxValInd.index = ind;
+            }
+            return maxValInd;
+          },
+          { index: 0, max: 0 }
+        ).index;
+        let maxLanguage = Object.keys(languageCount)[maxIndex];
+        setLanguage(maxLanguage);
       })
       .catch((error) => {
         console.log("Error fetching and parsing data", error);
