@@ -21,7 +21,7 @@ const Header = () => {
   );
 };
 
-const GitHubUser = ({ user }) => {
+const GitHubUser = ({ user, language }) => {
   return (
     <div className="user">
       <h2 className="user-name">
@@ -30,7 +30,7 @@ const GitHubUser = ({ user }) => {
       </h2>
       <h2 className="user-language">
         <span> Favourite Language: </span>
-        Javascipt
+        {language}
       </h2>
     </div>
   );
@@ -59,13 +59,14 @@ const Footer = () => {
 };
 
 function App() {
+  const [language, setlanguage] = useState("JavaScript");
   const [user, setUser] = useState("Selchuk-Karakus");
 
   return (
     <div className="App">
       <Header />
       <GithubUserSearchForm />
-      <GitHubUser user={user} />
+      <GitHubUser user={user} language={language} />
       <Footer />
     </div>
   );
