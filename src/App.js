@@ -1,25 +1,6 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-
-const Header = () => {
-  return (
-    <header>
-      <div className="header-container">
-        <h1>Github User Favourite Language </h1>
-        <ul className="contacts">
-          <li className="contact-dev">
-            <a href="https://selchuk-karakus.vercel.app/">Get In Touch</a>
-          </li>
-          <li className="contact-mvf">
-            <a href="https://portal.mvfglobal.com/" title="">
-              MVF
-            </a>
-          </li>
-        </ul>
-      </div>
-    </header>
-  );
-};
+import Header from "./Components/Header";
 
 const GitHubUser = ({ user, language }) => {
   return (
