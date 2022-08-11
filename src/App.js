@@ -36,12 +36,22 @@ const GitHubUser = ({ user, language }) => {
   );
 };
 
-const GithubUserSearchForm = () => {
+const GithubUserSearchForm = ({
+  inputData,
+  inputDataHandler,
+  handleSubmit,
+}) => {
   return (
-    <form className="search-form">
+    <form className="search-form" onSubmit={(e) => handleSubmit(e)}>
       <label>
         Github User Name:
-        <input type="text" name="name" placeholder="Search..." />
+        <input
+          type="text"
+          name="name"
+          placeholder="Search..."
+          value={inputData}
+          onChange={(e) => inputDataHandler(e.target.value)}
+        />
       </label>
       <input className="search-button" type="submit" value="Go" />
     </form>
@@ -61,6 +71,7 @@ const Footer = () => {
 function App() {
   const [language, setLanguage] = useState("HTML");
   const [user, setUser] = useState("Selchuk-Karakus");
+  const [searchText, setSearchText] = useState("");
 
   const GITHUB_USER_REPO_API_URL = `https://api.github.com/users/${user}/repos`;
 
@@ -81,7 +92,6 @@ function App() {
         }, {})
       )
       .then((languageCount) => {
-        console.log(languageCount);
         let maxIndex = Object.values(languageCount).reduce(
           (maxValInd, numOccurrence, ind) => {
             if (numOccurrence > maxValInd.max) {
@@ -100,10 +110,20 @@ function App() {
       });
   }, [user]);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setUser(searchText);
+    setSearchText("");
+  };
+
   return (
     <div className="App">
       <Header />
-      <GithubUserSearchForm />
+      <GithubUserSearchForm
+        handleSubmit={handleSubmit}
+        inputData={searchText}
+        inputDataHandler={setSearchText}
+      />
       <GitHubUser user={user} language={language} />
       <Footer />
     </div>
