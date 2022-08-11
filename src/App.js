@@ -59,10 +59,24 @@ const Footer = () => {
 };
 
 function App() {
-  const [language, setlanguage] = useState("JavaScript");
+  const [language, setlanguage] = useState("HTML");
   const [user, setUser] = useState("Selchuk-Karakus");
 
   const GITHUB_USER_REPO_API_URL = `https://api.github.com/users/${user}/repos`;
+
+  useEffect(() => {
+    fetch(GITHUB_USER_REPO_API_URL)
+      .then((res) => res.json())
+      .then((data) => {
+        return data.map((userRepo) => {
+          console.group(userRepo.language);
+          return userRepo.language;
+        });
+      })
+      .catch((error) => {
+        console.log("Error fetching and parsing data", error);
+      });
+  }, [user]);
 
   return (
     <div className="App">
