@@ -1,21 +1,7 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import Header from "./Components/Header";
-
-const GitHubUser = ({ user, language }) => {
-  return (
-    <div className="user">
-      <h2 className="user-name">
-        <span>Github User: </span>
-        {user}
-      </h2>
-      <h2 className="user-language">
-        <span> Favourite Language: </span>
-        {language}
-      </h2>
-    </div>
-  );
-};
+import GitHubUser from "./Components/GithubUser";
 
 const GithubUserSearchForm = ({
   inputData,
