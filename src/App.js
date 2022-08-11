@@ -2,28 +2,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import Header from "./Components/Header";
 import GitHubUser from "./Components/GithubUser";
-
-const GithubUserSearchForm = ({
-  inputData,
-  inputDataHandler,
-  handleSubmit,
-}) => {
-  return (
-    <form className="search-form" onSubmit={(e) => handleSubmit(e)}>
-      <label>
-        Github User Name:
-        <input
-          type="text"
-          name="name"
-          placeholder="Search..."
-          value={inputData}
-          onChange={(e) => inputDataHandler(e.target.value)}
-        />
-      </label>
-      <input className="search-button" type="submit" value="Go" />
-    </form>
-  );
-};
+import GithubUserSearchForm from "./Components/GithubUserSearchForm";
 
 const Footer = () => {
   return (
