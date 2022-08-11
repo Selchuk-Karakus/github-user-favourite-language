@@ -3,16 +3,7 @@ import { useState, useEffect } from "react";
 import Header from "./Components/Header";
 import GitHubUser from "./Components/GithubUser";
 import GithubUserSearchForm from "./Components/GithubUserSearchForm";
-
-const Footer = () => {
-  return (
-    <div className="footer-container">
-      <small className="copy-right">
-        Selchuk Karakus © 2022. All rights reserved
-      </small>
-    </div>
-  );
-};
+import Footer from "./Components/Footer";
 
 function App() {
   const [language, setLanguage] = useState("HTML");
