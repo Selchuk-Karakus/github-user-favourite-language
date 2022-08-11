@@ -59,7 +59,7 @@ const Footer = () => {
 };
 
 function App() {
-  const [language, setlanguage] = useState("HTML");
+  const [language, setLanguage] = useState("HTML");
   const [user, setUser] = useState("Selchuk-Karakus");
 
   const GITHUB_USER_REPO_API_URL = `https://api.github.com/users/${user}/repos`;
