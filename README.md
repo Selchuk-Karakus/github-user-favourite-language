@@ -1,71 +1,35 @@
-# Getting Started with Create React App
+## Github User Favourite Language
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An application used to get a github user's top programming language based on how frequent the language has been used in each repo by the user, and display that as the favourite language in the app, built with React, JavaScript, HTML, CSS and GitHub REST API.
 
-## Available Scripts
+## Installation and Setup Instructions
 
-In the project directory, you can run:
+Clone down this repository. You will need node and npm installed globally on your machine.
 
-### `yarn start`
+## Installation:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+npm install
 
-The page will reload when you make changes.\
+## To Start Server:
+
+npm start
+
+Runs the app in the development mode.
+Open http://localhost:3000 to view it in your browser.
+
+The page will reload when you make changes.
 You may also see any lint errors in the console.
 
-### `yarn test`
+## To Visit App:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+localhost:3000/
 
-### `yarn build`
+## Reflection
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This was a 4 day project built during my final project extension week at CodeYourFuture. Project goals included using technologies learned up until this point and familiarizing myself with gitHub REST API documentation.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+I wanted to build an application that allowed users to pull data from the github REST API based on what they typed in the search bar (github user account name), such as 'selchuk-karakus'. I started this process by using the create-react-app, then deleted all the unnecessary boiler plate before starting to code.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+One of the main challenges I ran into was X-RateLimit-Limit. Due to it's constraints to the number of calls you can make to the github REST API I had to be careful with how many calls I made within a certain time frame to be able to test the app.
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# github-user-favourite-language
+At the end of the day, the technologies implemented in this project are React, and significant amount of VanillaJS ES6, JSX, HTML and CSS. I chose to use the create-react-app to minimize initial setup and invest more time in diving into coming up with a program that outputs the end goal which is to display the most occurring language for the given github user account.
