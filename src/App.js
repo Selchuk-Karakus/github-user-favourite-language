@@ -6,46 +6,58 @@ import GithubUserSearchForm from "./Components/GithubUserSearchForm";
 import Footer from "./Components/Footer";
 
 function App() {
-  const [language, setLanguage] = useState("HTML");
-  const [user, setUser] = useState("Selchuk-Karakus");
+  const [language, setLanguage] = useState("");
+  const [user, setUser] = useState("");
   const [searchText, setSearchText] = useState("");
+  const [repos, setRepos] = useState([]);
 
   const GITHUB_USER_REPO_API_URL = `https://api.github.com/users/${user}/repos`;
 
   useEffect(() => {
-    fetch(GITHUB_USER_REPO_API_URL)
-      .then((res) => res.json())
-      .then((data) => {
-        return data.map((userRepo) => {
-          return userRepo.language;
-        });
-      })
-      .then((languages) =>
-        languages.reduce((language, occurrence) => {
-          Object.keys(language).includes(occurrence)
-            ? language[occurrence]++
-            : (language[occurrence] = 1);
-          return language;
-        }, {})
-      )
-      .then((languageCount) => {
-        let maxIndex = Object.values(languageCount).reduce(
-          (maxValInd, numOccurrence, ind) => {
-            if (numOccurrence > maxValInd.max) {
-              maxValInd.max = numOccurrence;
-              maxValInd.index = ind;
-            }
-            return maxValInd;
-          },
-          { index: 0, max: 0 }
-        ).index;
-        let maxLanguage = Object.keys(languageCount)[maxIndex];
-        setLanguage(maxLanguage);
-      })
-      .catch((error) => {
-        console.log("Error fetching and parsing data", error);
-      });
+    getData();
   }, [user]);
+
+  // Make an AJAX call using the fetch interface
+  const getData = async () => {
+    try {
+      const result = await fetch(GITHUB_USER_REPO_API_URL);
+      const responseData = await result.json();
+      setRepos(responseData);
+      getLanguage(responseData);
+    } catch (error) {
+      console.log(`Error fetching and parsing data:, ${error}`);
+    }
+  };
+
+  const getLanguage = (repos) => {
+    // Filter out the null values
+    const getAllLanguages = repos
+      .filter((repo) => repo.language !== null)
+      .map((filteredRepo) => filteredRepo.language);
+
+    // Count the occurrence of each language
+    const countOfLanguages = getAllLanguages.reduce((countOfLan, language) => {
+      Object.keys(countOfLan).includes(language)
+        ? countOfLan[language]++
+        : (countOfLan[language] = 1);
+      return countOfLan;
+    }, {});
+
+    // Match the highest occurrence with the the language and identify its ind
+    let maxIndex = Object.values(countOfLanguages).reduce(
+      (maxValInd, numOccurrence, ind) => {
+        if (numOccurrence > maxValInd.max) {
+          maxValInd.max = numOccurrence;
+          maxValInd.index = ind;
+        }
+        return maxValInd;
+      },
+      { index: 0, max: 0 }
+    ).index;
+    // Use the index of the most occurring language to grab it from the collection
+    let maxLanguage = Object.keys(countOfLanguages)[maxIndex];
+    setLanguage(maxLanguage);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
