@@ -43,7 +43,7 @@ function App() {
       return countOfLan;
     }, {});
 
-    // Match the highest occurrence with the the language and identify its ind
+    // Match the highest occurrence with the language and identify its ind
     let maxIndex = Object.values(countOfLanguages).reduce(
       (maxValInd, numOccurrence, ind) => {
         if (numOccurrence > maxValInd.max) {

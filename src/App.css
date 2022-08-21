@@ -113,12 +113,16 @@ label > input {
   border: none;
   /* outline: 0; */
   border-bottom: 2px solid #ff00a4;
-  transition: border-color .4s;
+  transition: border-color 0.4s;
 }
 
 input {
   margin-left: 1em;
   background-color: #14153f;
+  color: rgb(0, 0, 0);
+}
+
+.search-button {
   color: white;
 }
 
