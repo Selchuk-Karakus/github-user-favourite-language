@@ -4,59 +4,30 @@ import Header from "./Components/Header";
 import GitHubUser from "./Components/GithubUser";
 import GithubUserSearchForm from "./Components/GithubUserSearchForm";
 import Footer from "./Components/Footer";
+import FetchUserData from "./service/APIService";
 
 function App() {
   const [language, setLanguage] = useState("");
   const [user, setUser] = useState("");
   const [searchText, setSearchText] = useState("");
-  const [repos, setRepos] = useState([]);
-
-  const GITHUB_USER_REPO_API_URL = `https://api.github.com/users/${user}/repos`;
 
   useEffect(() => {
-    getData();
+    if (user) {
+      getData(user);
+    }
   }, [user]);
 
   // Make an AJAX call using the fetch interface
-  const getData = async () => {
-    try {
-      const result = await fetch(GITHUB_USER_REPO_API_URL);
-      const responseData = await result.json();
-      setRepos(responseData);
-      getLanguage(responseData);
-    } catch (error) {
-      console.log(`Error fetching and parsing data:, ${error}`);
-    }
-  };
-
-  const getLanguage = (repos) => {
-    // Filter out the null values
-    const getAllLanguages = repos
-      .filter((repo) => repo.language !== null)
-      .map((filteredRepo) => filteredRepo.language);
-
-    // Count the occurrence of each language
-    const countOfLanguages = getAllLanguages.reduce((countOfLan, language) => {
-      Object.keys(countOfLan).includes(language)
-        ? countOfLan[language]++
-        : (countOfLan[language] = 1);
-      return countOfLan;
-    }, {});
-
-    // Match the highest occurrence with the language and identify its ind
-    let maxIndex = Object.values(countOfLanguages).reduce(
-      (maxValInd, numOccurrence, ind) => {
-        if (numOccurrence > maxValInd.max) {
-          maxValInd.max = numOccurrence;
-          maxValInd.index = ind;
+  const getData = async (user) => {
+    await FetchUserData(user)
+      .then((response) => {
+        if (response !== "Error: user not found") {
+          setLanguage(response);
         }
-        return maxValInd;
-      },
-      { index: 0, max: 0 }
-    ).index;
-    // Use the index of the most occurring language to grab it from the collection
-    let maxLanguage = Object.keys(countOfLanguages)[maxIndex];
-    setLanguage(maxLanguage);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleSubmit = (e) => {
@@ -73,7 +44,11 @@ function App() {
         inputData={searchText}
         inputDataHandler={setSearchText}
       />
-      <GitHubUser user={user} language={language} />
+      {language === "" ? (
+        <GitHubUser user={user} language={language} />
+      ) : (
+        "user not found"
+      )}
       <Footer />
     </div>
   );
