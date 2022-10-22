@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
 import Header from "../Components/Header";
 
 describe("should render the header component", () => {
@@ -11,4 +12,13 @@ describe("should render the header component", () => {
       await screen.findAllByText("Github User Favourite Language")
     ).toBeTruthy();
   });
+});
+
+test("should navigate to https://selchuk-karakus.vercel.app/ when link is clicked", () => {
+  render(<Header />);
+
+  expect(screen.getByText("Get In Touch")).toHaveAttribute(
+    "href",
+    "https://selchuk-karakus.vercel.app/"
+  );
 });
